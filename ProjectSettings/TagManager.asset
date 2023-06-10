@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3014159269
+    locked: 0
+  - name: Clutter
+    uniqueID: 1310578977
+    locked: 0
+  - name: Actors
+    uniqueID: 1757811925
+    locked: 0
