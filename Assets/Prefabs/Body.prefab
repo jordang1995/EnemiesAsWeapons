@@ -89,6 +89,15 @@ MonoBehaviour:
   controller: {fileID: -5967171751759800632}
   toggleAI: 1
   moveSpeed: 2
+  abilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &5699087625615301093
 MonoBehaviour:
   m_ObjectHideFlags: 0

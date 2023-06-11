@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
 
     public void HandleInputRunning()
     {
-        Mind.mind.host.controller.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Mind.mind.host.controller.LookAt(Utilities.GetMousePositsion());
 
         Mind.mind.host.controller.Move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
 
@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour
         {
             Mind.mind.host.controller.UseAbility(1);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetMouseButtonDown(1))
         {
             Mind.mind.host.controller.UseAbility(0);
         }

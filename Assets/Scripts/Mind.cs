@@ -8,6 +8,7 @@ public class Mind : MonoBehaviour
     public static Mind mind;
 
     public Body host;
+    public HostMigration hostMigrationAbility;
 
     public enum GameState
     {
@@ -22,17 +23,15 @@ public class Mind : MonoBehaviour
         MigrateHost(host);
     }
 
-    public void MigrateHost(Body newHost)
+    public static void MigrateHost(Body newHost)
     {
-        if (host != null)
-        {
-            host.toggleAI = true;
-            host.gameObject.tag = "Enemy";
-        }
-        host = newHost;
-        gameObject.transform.SetParent(host.gameObject.transform, false);
-        host.toggleAI = false;
-        host.gameObject.tag = "Host";
+        Mind.mind.host.toggleAI = true;
+        Mind.mind.host.gameObject.tag = "Enemy";
+        Mind.mind.host.abilities[0] = null;
+        Mind.mind.host = newHost;
+        Mind.mind.gameObject.transform.SetParent(Mind.mind.host.gameObject.transform, false);
+        Mind.mind.host.toggleAI = false;
+        Mind.mind.host.gameObject.tag = "Host";
+        Mind.mind.host.abilities[0] = Mind.mind.hostMigrationAbility;
     }
-
 }

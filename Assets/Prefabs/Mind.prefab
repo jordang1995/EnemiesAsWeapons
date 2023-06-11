@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4183777796411304178}
   - component: {fileID: -3078158349632602723}
   - component: {fileID: -8440506493564022921}
+  - component: {fileID: 8265659796971645842}
   m_Layer: 0
   m_Name: Mind
   m_TagString: Untagged
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: {fileID: 0}
-  startingHost: {fileID: 0}
+  hostMigrationAbility: {fileID: 8265659796971645842}
   gameState: 0
 --- !u!114 &-8440506493564022921
 MonoBehaviour:
@@ -111,4 +112,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44332ff8b97ffaf408d404651cbd36f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mind: {fileID: -3078158349632602723}
+--- !u!114 &8265659796971645842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785189370570298680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de42801d96d47a4ab488534393907cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  user: {fileID: 0}
+  hitRadius: 0.0625
