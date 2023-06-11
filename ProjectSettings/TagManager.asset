@@ -15,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Hittable
   - 
   - 
   - 
@@ -51,4 +51,7 @@ TagManager:
     locked: 0
   - name: Actors
     uniqueID: 1757811925
+    locked: 0
+  - name: HUD
+    uniqueID: 3736878445
     locked: 0
