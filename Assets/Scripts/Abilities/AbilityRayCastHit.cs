@@ -6,7 +6,7 @@ public class AbilityRayCastHit : Ability
 {
 
     public float distance;
-    public int damage;
+    public float damage;
 
     public override void AddHits(List<Body> bodiesHit)
     {

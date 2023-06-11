@@ -19,6 +19,7 @@ public class Body : MonoBehaviour
         ai = gameObject.GetComponent<AI>();
         controller.AttachToBody(this);
         health = maxHealth;
+
     }
 
     public void UseAbility(int index)
@@ -27,10 +28,19 @@ public class Body : MonoBehaviour
         abilities[index].UseAbility();
     }
 
-    public void TakeDamage(int damage)
+    public void Die()
+    {
+        Mind.mind.deadBodyEvent.Invoke(this);
+        GameObject.Destroy(this.gameObject);
+    }
+
+    public void TakeDamage(float damage)
     {
         health = Mathf.Max(health - damage, 0);
         healthBar.transform.localScale = new Vector3(health / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-        Debug.Log(this + " has " + health + " health.");
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Mind : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Mind : MonoBehaviour
 
     public Body host;
     public HostMigration hostMigrationAbility;
+
+    public UnityEvent<Body> deadBodyEvent;
 
     public enum GameState
     {
@@ -21,7 +24,14 @@ public class Mind : MonoBehaviour
     {
         Mind.mind = this;
         MigrateHost(host);
+        deadBodyEvent = new UnityEvent<Body>();
+        deadBodyEvent.AddListener(DeadBodyEventHandler);
     }
+
+/*    private void Update()
+    {
+        host.TakeDamage(Time.deltaTime * 50f);
+    }*/
 
     public static void MigrateHost(Body newHost)
     {
@@ -33,5 +43,18 @@ public class Mind : MonoBehaviour
         Mind.mind.host.toggleAI = false;
         Mind.mind.host.gameObject.tag = "Host";
         Mind.mind.host.abilities[0] = Mind.mind.hostMigrationAbility;
+    }
+
+    public void DeadBodyEventHandler(Body body)
+    {
+        if (body == host)
+        {
+            LoseGame();
+        }
+    }
+
+    public void LoseGame()
+    {
+        Debug.Log("Game Over!");
     }
 }
