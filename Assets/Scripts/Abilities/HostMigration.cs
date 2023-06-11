@@ -8,17 +8,14 @@ public class HostMigration : Ability
 
     public override void AddHits(List<Body> bodiesHit)
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(Utilities.GetMousePositsion(), hitRadius, Vector2.zero);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(Utilities.GetMousePositsion(), hitRadius, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Hittable"));
         foreach (RaycastHit2D hit in hits)
         {
-            if (hit.collider.gameObject.CompareTag("Enemy"))
+            Body body = (hit.collider.gameObject.GetComponent<Body>());
+            if (body != null && body != user)
             {
-                Body body = (hit.collider.gameObject.GetComponent<Body>());
-                if (body != null)
-                {
-                    bodiesHit.Add(body);
-                    return;
-                }
+                bodiesHit.Add(body);
+                return;
             }
         }
     }

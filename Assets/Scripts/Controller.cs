@@ -23,14 +23,12 @@ public class Controller : MonoBehaviour
 
     public void LookAt(Vector3 point)
     {
-        Debug.DrawLine(body.transform.position, point);
-
         LookTo(point - this.body.transform.position);
     }
 
     public void LookTo(Vector2 direction)
     {
-        body.transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90, Vector3.forward);
+        body.SpriteTransform.rotation = Quaternion.AngleAxis(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90, Vector3.forward);
     }
 
 }
