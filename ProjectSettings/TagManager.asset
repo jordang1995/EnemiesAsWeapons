@@ -16,7 +16,7 @@ TagManager:
   - 
   - 
   - Hittable
-  - 
+  - Impassable
   - 
   - 
   - 
@@ -54,4 +54,7 @@ TagManager:
     locked: 0
   - name: HUD
     uniqueID: 3736878445
+    locked: 0
+  - name: Debug
+    uniqueID: 1212623415
     locked: 0
