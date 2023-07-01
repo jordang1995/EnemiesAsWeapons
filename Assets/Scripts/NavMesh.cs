@@ -48,7 +48,6 @@ public class NavMesh : MonoBehaviour
                         destination = GetNode(new Vector2Int(x + direction.x, y + direction.y));
                         if (destination != null && EdgeOK(source, destination))
                         {
-                            Debug.Log("drawing line between " + source.position + " and " + destination.position);
                             Debug.DrawLine(source.position, destination.position, Color.magenta, Mathf.Infinity);
                         }
                     }
