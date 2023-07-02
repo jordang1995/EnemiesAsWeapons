@@ -40,10 +40,21 @@ public class Body : MonoBehaviour
         GameObject.Destroy(this.gameObject);
     }
 
+    public void UpdateHealthHUD()
+    {
+        healthBar.transform.localScale = new Vector3(health / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+    }
+
+    public void Heal(float heal)
+    {
+        health = Mathf.Min(maxHealth, health + heal);
+        UpdateHealthHUD();
+    }
+
     public void TakeDamage(float damage)
     {
         health = Mathf.Max(health - damage, 0);
-        healthBar.transform.localScale = new Vector3(health / maxHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        UpdateHealthHUD();
         if (health <= 0)
         {
             Die();

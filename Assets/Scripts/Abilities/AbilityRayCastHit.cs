@@ -10,11 +10,9 @@ public class AbilityRayCastHit : Ability
 
     public override void AddHits(List<Body> bodiesHit, Vector3 position)
     {
-        Debug.Log("Raycast out");
         RaycastHit2D[] hits = Physics2D.RaycastAll(user.transform.position, (position - user.transform.position), distance, LayerMask.GetMask("Hittable"));
         foreach (RaycastHit2D hit in hits)
         {
-            Debug.Log("\tHit: " + hit.collider.gameObject);
             Body body = (hit.collider.gameObject.GetComponent<Body>());
             if (body != null && body != user)
             {

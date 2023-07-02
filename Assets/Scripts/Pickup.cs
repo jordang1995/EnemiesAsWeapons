@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float heal;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Body body = collision.gameObject.GetComponent<Body>();
+        Debug.Log(body);
+        if (body != null)
+        {
+            body.Heal(heal);
+            GameObject.Destroy(gameObject);
+        }
     }
 }
