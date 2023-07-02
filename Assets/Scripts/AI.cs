@@ -8,6 +8,8 @@ public class AI : MonoBehaviour
     public Body body;
     public List<NavMesh.Node> path = new List<NavMesh.Node>();
     public float pathingFrequency;
+    public float arriveDistanceForAttacking;
+    public float arriveDistanceForTravelling;
 
     private float nextPathing;
 
@@ -18,34 +20,64 @@ public class AI : MonoBehaviour
 
     public void Delegate()
     {
-        if (SeesTarget())
+        if (target != null)
         {
-            body.controller.LookAt(target.transform.position);
-            // move towards target
+            if (SeesTarget())
+            {
+                if (HasArrivedAtPoint(target.transform.position, arriveDistanceForAttacking))
+                {
+                    body.controller.LookAt(target.transform.position);
+                    body.controller.UseAbility(1, target.transform.position);
+                }
+                else
+                {
+                    TravelTowardsPoint(target.transform.position);
+                }
+            }
+            else
+            {
+                if (Time.time >= nextPathing)
+                {
+                    path = NavMesh.Instance.GetPath(body.transform.position, target.transform.position);
+                    nextPathing = Time.time + pathingFrequency;
+                }
+                FollowPath();
+            }
         }
         else
         {
-            if (Time.time >= nextPathing)
-            {
-                // path
-                nextPathing = Time.time + pathingFrequency;
-            }
-            // move in path
+            //Wander?
         }
+    }
+
+    public void TravelTowardsPoint(Vector3 point)
+    {
+        body.controller.LookAt(point);
+        body.controller.Move((point - body.transform.position).normalized);
+    }
+
+    public bool HasArrivedAtPoint(Vector3 point, float arriveDistance)
+    {
+        return ((point - body.transform.position).magnitude <= arriveDistance);
+    }
+
+    public void FollowPath()
+    {
+        if (HasArrivedAtPoint(path[0].position, arriveDistanceForTravelling))
+        {
+            path.RemoveAt(0);
+        }
+        TravelTowardsPoint(path[0].position);
     }
 
     public bool SeesTarget()
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(body.transform.position, (target.transform.position - body.transform.position), Mathf.Infinity, LayerMask.GetMask("Hittable"));
-        foreach (RaycastHit2D hit in hits)
+        RaycastHit2D[] hits = Physics2D.RaycastAll(body.transform.position, (target.transform.position - body.transform.position), (target.transform.position - body.transform.position).magnitude, LayerMask.GetMask("Impassable"));
+        if (hits.Length > 0)
         {
-            Body bodyHit = (hit.collider.gameObject.GetComponent<Body>());
-            if (bodyHit != null && bodyHit == target)
-            {
-                return true;
-            }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public void SetTarget(Body target)

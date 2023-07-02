@@ -6,9 +6,9 @@ public class HostMigration : Ability
 {
     public float hitRadius;
 
-    public override void AddHits(List<Body> bodiesHit)
+    public override void AddHits(List<Body> bodiesHit, Vector3 position)
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(Utilities.GetMousePositsion(), hitRadius, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Hittable"));
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(position, hitRadius, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Hittable"));
         foreach (RaycastHit2D hit in hits)
         {
             Body body = (hit.collider.gameObject.GetComponent<Body>());

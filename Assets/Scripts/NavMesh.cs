@@ -94,6 +94,11 @@ public class NavMesh : MonoBehaviour
         return true;
     }
 
+    public List<Node> GetPath(Vector3 source, Vector3 destination)
+    {
+        return GetPath(GetClosestNode(source), GetClosestNode(destination));
+    }
+
     public List<Node> GetPath(Node source, Node destination)
     {
         //Debug.Log("Drawing: " + source.position + " | " + destination.position);
@@ -119,13 +124,10 @@ public class NavMesh : MonoBehaviour
                     current = cameFrom[current];
                     totalPath.Insert(0, current);
                 }
-                Debug.Log("Pathfinsing successful!");
                 return totalPath;
             }
 
             openSet.Remove(current);
-            Debug.Log("A");
-            Debug.Log(current.neighbors);
             foreach (Node neighbor in current.neighbors)
             {
                 tentativeGScore = GetScore(gScore, current) + (current.position - neighbor.position).magnitude;
