@@ -26,11 +26,11 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Mind.mind.host.controller.UseAbility(1);
+            Mind.mind.host.controller.UseAbility(1, Utilities.GetMousePositsion());
         }
         if (Input.GetMouseButtonDown(1))
         {
-            Mind.mind.host.controller.UseAbility(0);
+            Mind.mind.host.controller.UseAbility(0, Utilities.GetMousePositsion());
         }
     }
 

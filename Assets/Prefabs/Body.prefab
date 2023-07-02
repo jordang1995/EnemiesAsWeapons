@@ -81,6 +81,8 @@ MonoBehaviour:
   target: {fileID: 0}
   body: {fileID: 7379504392595652183}
   pathingFrequency: 2
+  arriveDistanceForAttacking: 1
+  arriveDistanceForTravelling: 0.125
 --- !u!114 &4742287122315981810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 7379504392595652183}
-  distance: 0.5
+  coolDown: 1
+  distance: 2
   damage: 10
 --- !u!58 &-1094083300093399738
 CircleCollider2D:

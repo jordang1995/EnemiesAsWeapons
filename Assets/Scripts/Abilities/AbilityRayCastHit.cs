@@ -8,11 +8,13 @@ public class AbilityRayCastHit : Ability
     public float distance;
     public float damage;
 
-    public override void AddHits(List<Body> bodiesHit)
+    public override void AddHits(List<Body> bodiesHit, Vector3 position)
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(user.transform.position, (Utilities.GetMousePositsion() - user.transform.position), distance, LayerMask.GetMask("Hittable"));
+        Debug.Log("Raycast out");
+        RaycastHit2D[] hits = Physics2D.RaycastAll(user.transform.position, (position - user.transform.position), distance, LayerMask.GetMask("Hittable"));
         foreach (RaycastHit2D hit in hits)
         {
+            Debug.Log("\tHit: " + hit.collider.gameObject);
             Body body = (hit.collider.gameObject.GetComponent<Body>());
             if (body != null && body != user)
             {

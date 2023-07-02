@@ -13,12 +13,12 @@ public class Controller : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        body.transform.position = body.transform.position += direction * Time.deltaTime * body.moveSpeed;
+        body.transform.position = body.transform.position += direction.normalized * Time.deltaTime * body.moveSpeed;
     }
 
-    public void UseAbility(int index)
+    public void UseAbility(int index, Vector3 position)
     {
-        body.UseAbility(index);
+        body.UseAbility(index, position);
     }
 
     public void LookAt(Vector3 point)

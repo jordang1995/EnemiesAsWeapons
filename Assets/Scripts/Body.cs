@@ -29,10 +29,9 @@ public class Body : MonoBehaviour
         }
     }
 
-    public void UseAbility(int index)
+    public void UseAbility(int index, Vector3 position)
     {
-        Debug.Log(this + " used Ability " + index);
-        abilities[index].UseAbility();
+        abilities[index].UseAbility(position);
     }
 
     public void Die()
