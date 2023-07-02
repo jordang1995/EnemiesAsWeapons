@@ -78,6 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81cc05caabffc24a9d789de60e2e885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  body: {fileID: 7379504392595652183}
+  navmesh: {fileID: 0}
+  timer: 1
 --- !u!114 &4742287122315981810
 MonoBehaviour:
   m_ObjectHideFlags: 0

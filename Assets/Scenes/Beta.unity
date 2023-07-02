@@ -212,22 +212,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 829321253}
     m_Modifications:
-    - target: {fileID: 985610325236972663, guid: a97115eebd96e114ea1fa516adb404d7, type: 3}
-      propertyPath: m_Color.b
-      value: 0.82389617
-      objectReference: {fileID: 0}
-    - target: {fileID: 985610325236972663, guid: a97115eebd96e114ea1fa516adb404d7, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 985610325236972663, guid: a97115eebd96e114ea1fa516adb404d7, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5424528
-      objectReference: {fileID: 0}
     - target: {fileID: 4187096781706634097, guid: a97115eebd96e114ea1fa516adb404d7, type: 3}
       propertyPath: m_Name
       value: Bear
       objectReference: {fileID: 0}
+    - target: {fileID: 6820345780613007825, guid: a97115eebd96e114ea1fa516adb404d7, type: 3}
+      propertyPath: navmesh
+      value: 
+      objectReference: {fileID: 891137150}
     - target: {fileID: 8548696202366133418, guid: a97115eebd96e114ea1fa516adb404d7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -345,6 +337,7 @@ MonoBehaviour:
   area: {fileID: 1557674996}
   nodeDistance: 0.5
   nodeDebug: {fileID: 3521472798165064163, guid: 05ff881dae9d17e4294df502d44f8965, type: 3}
+  startingPosition: {x: 0, y: 0}
 --- !u!4 &1107972934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9055091997486614890, guid: d50d71d98e3103543b9cd72b15fed8ea, type: 3}
@@ -361,6 +354,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kirby
       objectReference: {fileID: 0}
+    - target: {fileID: 3536092632241508017, guid: d50d71d98e3103543b9cd72b15fed8ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174307061093524497, guid: d50d71d98e3103543b9cd72b15fed8ea, type: 3}
+      propertyPath: navmesh
+      value: 
+      objectReference: {fileID: 891137150}
     - target: {fileID: 9055091997486614890, guid: d50d71d98e3103543b9cd72b15fed8ea, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -418,6 +419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flufferby
       objectReference: {fileID: 0}
+    - target: {fileID: 5471305072087933062, guid: 2ee167345c953424a94b487d2cf88061, type: 3}
+      propertyPath: navmesh
+      value: 
+      objectReference: {fileID: 891137150}
     - target: {fileID: 7199099957001735677, guid: 2ee167345c953424a94b487d2cf88061, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -146729,22 +146734,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 829321253}
     m_Modifications:
-    - target: {fileID: 1381549049047796139, guid: d7184d003e2a43a49956fe1fd9101ea0, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1381549049047796139, guid: d7184d003e2a43a49956fe1fd9101ea0, type: 3}
-      propertyPath: m_Color.g
-      value: 0.043819427
-      objectReference: {fileID: 0}
-    - target: {fileID: 1381549049047796139, guid: d7184d003e2a43a49956fe1fd9101ea0, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2637462873835509421, guid: d7184d003e2a43a49956fe1fd9101ea0, type: 3}
       propertyPath: m_Name
       value: Uglyman
       objectReference: {fileID: 0}
+    - target: {fileID: 2637462873835509421, guid: d7184d003e2a43a49956fe1fd9101ea0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4622686143512902669, guid: d7184d003e2a43a49956fe1fd9101ea0, type: 3}
+      propertyPath: navmesh
+      value: 
+      objectReference: {fileID: 891137150}
     - target: {fileID: 7503763558051778934, guid: d7184d003e2a43a49956fe1fd9101ea0, type: 3}
       propertyPath: m_RootOrder
       value: 0

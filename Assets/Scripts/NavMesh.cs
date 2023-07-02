@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class NavMesh : MonoBehaviour
 {
+    public static NavMesh Instance;
+
     public Node[,] nodes;
     public float nodeRadius;
     public GameObject area;
     public float nodeDistance;
     public GameObject nodeDebug;
 
+    public Vector2 startingPosition;
+
     private void Start()
     {
+        NavMesh Instance = this;
         SpriteRenderer spriteRenderer = area.GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
             Debug.LogError("Critical error during NavMesh Generation: no SpriterRenderer found");
         }
 
-        Vector2 startingPosition = area.transform.TransformPoint(spriteRenderer.sprite.bounds.min);
+        startingPosition = area.transform.TransformPoint(spriteRenderer.sprite.bounds.min);
         Vector2 size = spriteRenderer.bounds.size;
         Vector2Int length = new Vector2Int((int)(size.x / nodeDistance), (int)(size.y / nodeDistance));
         nodes = new Node[length.x, length.y];
@@ -43,13 +48,15 @@ public class NavMesh : MonoBehaviour
                 if (source != null)
                 {
                     GameObject.Instantiate(nodeDebug, nodes[x, y].position, Quaternion.identity);
+                    source.neighbors = new List<Node>();
                     foreach (Vector2Int direction in Utilities.Directions8)
                     {
                         destination = GetNode(new Vector2Int(x + direction.x, y + direction.y));
                         if (destination != null && EdgeOK(source, destination))
                         {
-                            Debug.Log("drawing line between " + source.position + " and " + destination.position);
-                            Debug.DrawLine(source.position, destination.position, Color.magenta, Mathf.Infinity);
+                            //Debug.Log("drawing line between " + source.position + " and " + destination.position);
+                            //Debug.DrawLine(source.position, destination.position, Color.magenta, Mathf.Infinity);
+                            source.neighbors.Add(destination);
                         }
                     }
                 }
@@ -87,7 +94,117 @@ public class NavMesh : MonoBehaviour
         return true;
     }
 
+    public List<Node> GetPath(Node source, Node destination)
+    {
+        //Debug.Log("Drawing: " + source.position + " | " + destination.position);
 
+        Node current;
+        float tentativeGScore;
+        List<Node> totalPath = new List<Node>();
+        List<Node> openSet = new List<Node>() { source };
+        Dictionary<Node, Node> cameFrom = new Dictionary<Node, Node>();
+        Dictionary<Node, float> gScore = new Dictionary<Node, float>();
+        gScore[source] = 0;
+        Dictionary<Node, float> fScore = new Dictionary<Node, float>();
+        fScore[source] = Heuristic(source, destination);
+
+        while (openSet.Count > 0)
+        {
+            current = GetBestGuessNode(openSet, fScore);
+            if (current == destination)
+            {
+                totalPath.Add(current);
+                while (cameFrom.ContainsKey(current))
+                {
+                    current = cameFrom[current];
+                    totalPath.Insert(0, current);
+                }
+                Debug.Log("Pathfinsing successful!");
+                return totalPath;
+            }
+
+            openSet.Remove(current);
+            Debug.Log("A");
+            Debug.Log(current.neighbors);
+            foreach (Node neighbor in current.neighbors)
+            {
+                tentativeGScore = GetScore(gScore, current) + (current.position - neighbor.position).magnitude;
+                if (tentativeGScore < GetScore(gScore, neighbor))
+                {
+                    cameFrom[neighbor] = current;
+                    gScore[neighbor] = tentativeGScore;
+                    fScore[neighbor] = tentativeGScore + Heuristic(neighbor, destination);
+                    if (!(openSet.Contains(neighbor)))
+                    {
+                        openSet.Add(neighbor);
+                    }
+                }
+            }
+        }
+        Debug.LogError("PATHFINDING FAIL!!!!!!!");
+        return totalPath;
+    }
+
+    public float GetScore(Dictionary<Node, float> map, Node key)
+    {
+        if (!(map.ContainsKey(key)))
+        {
+            return Mathf.Infinity;
+        }
+        return map[key];
+    }
+
+    public Node GetBestGuessNode(List<Node> openSet, Dictionary<Node, float> fScore)
+    {
+        Node bestGuess = null;
+        foreach (Node node in openSet)
+        {
+            if ((bestGuess == null) || (GetScore(fScore, node) < GetScore(fScore, bestGuess)))
+            {
+                bestGuess = node;
+            }
+        }
+        return bestGuess;
+    }
+
+    public float Heuristic(Node source, Node destination)
+    {
+        float dx = destination.position.x - source.position.x;
+        float dy = destination.position.y - source.position.y;
+
+        if (Mathf.Abs(dx) > Mathf.Abs(dy))
+        {
+            return GetDistanceForHeuristic(dx, dy);
+        }
+        return GetDistanceForHeuristic(dy, dx);
+    }
+
+    public float GetDistanceForHeuristic(float p, float q)
+    {
+        return (p - q) + (Mathf.Sqrt((2) * (Mathf.Pow(q, 2))));
+    }
+
+    public void DrawPath(List<Node> nodes)
+    {
+        Node source = null;
+        foreach(Node target in nodes)
+        {
+            if (source == null)
+            {
+                source = target;
+            }
+            else
+            {
+                Debug.DrawLine(source.position, target.position, Color.green, 1f);
+            }
+            source = target;
+        }
+    }
+
+    public Node GetClosestNode(Vector3 position)
+    {
+        return nodes[Mathf.RoundToInt((position.x - startingPosition.x) / nodeDistance), Mathf.RoundToInt((position.y - startingPosition.y) / nodeDistance)];
+    }
 
     public class Node
     {

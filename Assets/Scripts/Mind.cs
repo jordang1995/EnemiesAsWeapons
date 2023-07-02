@@ -10,6 +10,7 @@ public class Mind : MonoBehaviour
 
     public Body host;
     public HostMigration hostMigrationAbility;
+    public GameObject closestNode;
 
     public UnityEvent<Body> deadBodyEvent;
 
@@ -23,15 +24,15 @@ public class Mind : MonoBehaviour
     private void Start()
     {
         Mind.mind = this;
+        Cursor.lockState = CursorLockMode.Confined;
         MigrateHost(host);
         deadBodyEvent = new UnityEvent<Body>();
         deadBodyEvent.AddListener(DeadBodyEventHandler);
     }
 
-/*    private void Update()
+    private void Update()
     {
-        host.TakeDamage(Time.deltaTime * 50f);
-    }*/
+    }
 
     public static void MigrateHost(Body newHost)
     {
