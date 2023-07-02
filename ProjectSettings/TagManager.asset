@@ -46,6 +46,9 @@ TagManager:
   - name: Ground
     uniqueID: 3014159269
     locked: 0
+  - name: Tiles
+    uniqueID: 3499339571
+    locked: 0
   - name: Clutter
     uniqueID: 1310578977
     locked: 0
