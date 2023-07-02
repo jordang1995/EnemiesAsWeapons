@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 4742287122315981810}
   toggleAI: 1
-  moveSpeed: 2
+  moveSpeed: 4
   abilities:
   - {fileID: 0}
   - {fileID: 5053650520467866565}
@@ -80,8 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   body: {fileID: 7379504392595652183}
-  navmesh: {fileID: 0}
-  timer: 1
+  pathingFrequency: 2
 --- !u!114 &4742287122315981810
 MonoBehaviour:
   m_ObjectHideFlags: 0

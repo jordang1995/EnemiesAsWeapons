@@ -6,27 +6,46 @@ public class AI : MonoBehaviour
 {
     public Body target;
     public Body body;
-    public NavMesh navmesh;
+    public List<NavMesh.Node> path = new List<NavMesh.Node>();
+    public float pathingFrequency;
 
-    public float timer;
+    private float nextPathing;
 
-    private void Update()
+    private void Start()
     {
-        timer -= Time.deltaTime;
-        Debug.Log(timer);
-        if (timer > 0)
+        nextPathing = Time.time;
+    }
+
+    public void Delegate()
+    {
+        if (SeesTarget())
         {
-            return;
+            body.controller.LookAt(target.transform.position);
+            // move towards target
         }
         else
         {
-            timer = 1f;
+            if (Time.time >= nextPathing)
+            {
+                // path
+                nextPathing = Time.time + pathingFrequency;
+            }
+            // move in path
         }
-        if (target == null)
+    }
+
+    public bool SeesTarget()
+    {
+        RaycastHit2D[] hits = Physics2D.RaycastAll(body.transform.position, (target.transform.position - body.transform.position), Mathf.Infinity, LayerMask.GetMask("Hittable"));
+        foreach (RaycastHit2D hit in hits)
         {
-            return;
+            Body bodyHit = (hit.collider.gameObject.GetComponent<Body>());
+            if (bodyHit != null && bodyHit == target)
+            {
+                return true;
+            }
         }
-        //navmesh.DrawPath(navmesh.GetPath(navmesh.GetClosestNode(body.transform.position), navmesh.GetClosestNode(target.transform.position)));
+        return false;
     }
 
     public void SetTarget(Body target)

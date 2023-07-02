@@ -19,7 +19,14 @@ public class Body : MonoBehaviour
         ai = gameObject.GetComponent<AI>();
         controller.AttachToBody(this);
         health = maxHealth;
+    }
 
+    private void Update()
+    {
+        if (toggleAI)
+        {
+            ai.Delegate();
+        }
     }
 
     public void UseAbility(int index)

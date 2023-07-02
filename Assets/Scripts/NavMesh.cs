@@ -16,7 +16,7 @@ public class NavMesh : MonoBehaviour
 
     private void Start()
     {
-        NavMesh Instance = this;
+        NavMesh.Instance = this;
         SpriteRenderer spriteRenderer = area.GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
