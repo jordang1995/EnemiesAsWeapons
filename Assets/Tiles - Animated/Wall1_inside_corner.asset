@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Wall1_inside_corner
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 0bf31083810bb1b44a86ee9d4adf42a8, type: 3}
+  - {fileID: 21300000, guid: 7d9a8ac7e3977944b8722c0b009eeecd, type: 3}
+  - {fileID: 21300000, guid: c86d75d720171894987b7603a6ac45c7, type: 3}
+  - {fileID: 21300000, guid: a26f1d391e4d56c4ea0c09630ecaba77, type: 3}
+  - {fileID: 21300000, guid: a97dbeebc22cb874a8572fa2d78b6758, type: 3}
+  - {fileID: 21300000, guid: 3d17bf3cd03c3dc4daca480e62b588f5, type: 3}
+  - {fileID: 21300000, guid: 678dc76b44cc7c34b93b645f008eb247, type: 3}
+  m_MinSpeed: 7
+  m_MaxSpeed: 7
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 1
