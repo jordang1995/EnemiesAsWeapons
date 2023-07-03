@@ -9,7 +9,7 @@ public class Mind : MonoBehaviour
     public static Mind mind;
 
     public Body host;
-    public HostMigration hostMigrationAbility;
+    public AbilityCircleCastHit hostMigrationAbility;
     public GameObject closestNode;
 
     public UnityEvent<Body> deadBodyEvent;
@@ -44,6 +44,7 @@ public class Mind : MonoBehaviour
         Mind.mind.host.toggleAI = false;
         Mind.mind.host.gameObject.tag = "Host";
         Mind.mind.host.abilities[0] = Mind.mind.hostMigrationAbility;
+        Mind.mind.hostMigrationAbility.user = Mind.mind.host;
     }
 
     public void DeadBodyEventHandler(Body body)

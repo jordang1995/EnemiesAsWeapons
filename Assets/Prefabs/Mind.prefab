@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4183777796411304178}
   - component: {fileID: -3078158349632602723}
   - component: {fileID: -8440506493564022921}
-  - component: {fileID: 8265659796971645842}
+  - component: {fileID: 7334193917241711804}
   m_Layer: 0
   m_Name: Mind
   m_TagString: Untagged
@@ -134,7 +134,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1757811925
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: d4ce38881da9988428911b559db00c82, type: 3}
   m_Color: {r: 0, g: 1, b: 0, a: 1}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: {fileID: 0}
-  hostMigrationAbility: {fileID: 8265659796971645842}
+  hostMigrationAbility: {fileID: 7334193917241711804}
   closestNode: {fileID: 0}
   deadBodyEvent:
     m_PersistentCalls:
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44332ff8b97ffaf408d404651cbd36f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8265659796971645842
+--- !u!114 &7334193917241711804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,8 +187,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8785189370570298680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de42801d96d47a4ab488534393907cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 775bf645ec9f64c48801eb3bff9581f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDown: 5
   user: {fileID: 0}
-  hitRadius: 0.0625
+  hitRadius: 0.125

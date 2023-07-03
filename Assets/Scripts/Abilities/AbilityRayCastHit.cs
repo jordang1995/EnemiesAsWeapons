@@ -4,27 +4,21 @@ using UnityEngine;
 
 public class AbilityRayCastHit : Ability
 {
-
     public float distance;
-    public float damage;
 
-    public override void AddHits(List<Body> bodiesHit, Vector3 position)
+    public override void UseAbility(Vector3 position)
     {
+        EffectDamage effect = new EffectDamage();
         RaycastHit2D[] hits = Physics2D.RaycastAll(user.transform.position, (position - user.transform.position), distance, LayerMask.GetMask("Hittable"));
         foreach (RaycastHit2D hit in hits)
         {
             Body body = (hit.collider.gameObject.GetComponent<Body>());
             if (body != null && body != user)
             {
-                bodiesHit.Add(body);
+                effect.onHitEvent.Invoke(new List<Body>() {body});
+                effect.onActivateEvent.Invoke();
                 return;
             }
         }
-    }
-
-    public override void HitBodies(List<Body> bodiesHit)
-    {
-        Debug.DrawLine(user.transform.position, bodiesHit[0].transform.position, Color.red, 0.25f);
-        bodiesHit[0].TakeDamage(damage);
     }
 }

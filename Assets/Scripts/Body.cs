@@ -31,7 +31,8 @@ public class Body : MonoBehaviour
 
     public void UseAbility(int index, Vector3 position)
     {
-        abilities[index].UseAbility(position);
+        Debug.Log("Using ability at index: " + index);
+        abilities[index].TryUseAbility(position);
     }
 
     public void Die()
@@ -53,7 +54,9 @@ public class Body : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log(gameObject + " is Taking damage");
         health = Mathf.Max(health - damage, 0);
+        Debug.Log("health: " + health);
         UpdateHealthHUD();
         if (health <= 0)
         {
